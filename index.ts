@@ -26,6 +26,11 @@ HaxballJS.then((HBInit) => {
     maxPlayers: 12,
     public: !debuggingMode,
     noPlayer: true,
+    geo: {
+      code: "PT",
+      lat: 41.15144214309606,
+      lon: -8.613879659626768
+    },
     token: "thr1.AAAAAGPgQGdqwNRSEyg40Q.d3sgmT3VMkE", //https://haxball.com/headlesstoken
   });
 
