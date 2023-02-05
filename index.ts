@@ -26,7 +26,7 @@ HaxballJS.then((HBInit) => {
     maxPlayers: 12,
     public: !debuggingMode,
     noPlayer: true,
-    token: "thr1.AAAAAGPgHgXzGDgL7z51bw.9Lw9ujZBbjI", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPgQGdqwNRSEyg40Q.d3sgmT3VMkE", //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(3);
