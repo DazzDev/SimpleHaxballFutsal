@@ -8,7 +8,7 @@ import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
 import { checkAndHandleCommands } from "./commands";
 
-export const debuggingMode = true;
+export const debuggingMode = false;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
