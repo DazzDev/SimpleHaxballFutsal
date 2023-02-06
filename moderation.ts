@@ -1,16 +1,17 @@
+import { isCommand } from "./commands";
 import { badWordList, room } from "./index";
 
 const playerConsecutiveMessages = new Map<number, string[]>();
 const playerMessageTimestamps = new Map<number, number[]>();
-const rateLimit = 3;
+const rateLimit = 4;
 const rateLimitTimeSpan = 4000;
 
 export function checkAndHandleSpam(playerId: number, message: string): boolean {
-    if (isPlayerAboveRateLimit(playerId) || is3rdConsecutiveMessage(playerId, message)) {
+    if (!isCommand(message) && (isPlayerAboveRateLimit(playerId) || is3rdConsecutiveMessage(playerId, message))) {
         room.kickPlayer(playerId, "Spam", false);
-        return false;
+        return true;
     }
-    return true;
+    return false;
 }
 
 function isPlayerAboveRateLimit(playerId: number): boolean {
@@ -39,10 +40,10 @@ function is3rdConsecutiveMessage(playerId: number, message: string): boolean {
 
 export function checkAndHandleBadWords(playerId: number, message: string): boolean {
     if (containsBadWords(message)) {
-        room.kickPlayer(playerId, "Racismo/Homofobia/Xenofobia", true);
-        return false;
+        room.kickPlayer(playerId, "Comentários insultuosos", true);
+        return true;
     }
-    return true;
+    return false;
 }
 
 function containsBadWords(message: string): boolean {

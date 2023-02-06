@@ -6,8 +6,9 @@ import { handlePlayerLeaving } from "./playerleaving";
 import { moveNewTeam, restartGameWithCallback } from "./teammanagement";
 import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
+import { checkAndHandleCommands } from "./commands";
 
-export const debuggingMode = false;
+export const debuggingMode = true;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
@@ -33,7 +34,7 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPhFSyObgZBBRMYEw.Chdyap8jaNY", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPhMmstodzwrmNoWQ.AdouCFLDtv8", //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(3);
@@ -77,6 +78,6 @@ HaxballJS.then((HBInit) => {
   }
 
   room.onPlayerChat = function (player: PlayerObject, message: string): boolean {
-    return checkAndHandleSpam(player.id, message) && checkAndHandleBadWords(player.id, message);
+    return !checkAndHandleCommands(player, message) && !checkAndHandleBadWords(player.id, message) && !checkAndHandleSpam(player.id, message);
   }
 });
