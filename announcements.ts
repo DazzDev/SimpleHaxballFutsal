@@ -1,6 +1,6 @@
 import { announcementList, room } from "./index";
 
-const announcementsInterval = 60 * 1000;
+const announcementsInterval = 120 * 1000;
 let announcementPosition = 1;
 
 export function setupAnnouncements() {
