@@ -7,7 +7,7 @@ import { moveNewTeam, restartGameWithCallback } from "./teammanagement";
 import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
 
-export const debuggingMode = false;
+export const debuggingMode = true;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
@@ -33,7 +33,7 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPgcFlYK8-yGlSgIw.79GCo3JZoaw", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPhFSyObgZBBRMYEw.Chdyap8jaNY", //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(3);
@@ -64,7 +64,7 @@ HaxballJS.then((HBInit) => {
   //triggers *only* when a team is winning and the timer runs out, 
   //because the room is also listening for the onTeamGoal event, which triggers first
   room.onTeamVictory = function (scores: ScoresObject): void {
-    const teamPlayerIdList = scores.red > scores.blue ? redPlayerIdList : bluePlayerIdList;
+    const teamPlayerIdList = scores.red > scores.blue ? bluePlayerIdList : redPlayerIdList;
     restartGameWithCallback(specPlayerIdList.length === 0 ? () => undefined : () => moveNewTeam(teamPlayerIdList));
   }
 
