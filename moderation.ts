@@ -38,9 +38,9 @@ function is3rdConsecutiveMessage(playerId: number, message: string): boolean {
     return false;
 }
 
-export function checkAndHandleBadWords(playerId: number, message: string): boolean {
-    if (containsBadWords(message)) {
-        room.kickPlayer(playerId, "Comentários insultuosos", true);
+export function checkAndHandleBadWords(playerId: number, string: string): boolean {
+    if (containsBadWords(string)) {
+        room.kickPlayer(playerId, "Nome/Comentários insultuosos", true);
         return true;
     }
     return false;

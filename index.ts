@@ -8,7 +8,7 @@ import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
 import { checkAndHandleCommands } from "./commands";
 
-export const debuggingMode = false;
+export const debuggingMode = true;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
@@ -40,7 +40,6 @@ HaxballJS.then((HBInit) => {
   room.setScoreLimit(3);
   room.setTimeLimit(3);
   room.setTeamsLock(true);
-  room.setCustomStadium(stadium2x2);
 
   room.onRoomLink = function (url: string) {
     console.log(url);
@@ -81,3 +80,8 @@ HaxballJS.then((HBInit) => {
     return !checkAndHandleCommands(player, message) && !checkAndHandleBadWords(player.id, message) && !checkAndHandleSpam(player.id, message);
   }
 });
+
+export function pauseUnpauseGame() {
+  room.pauseGame(true);
+  room.pauseGame(false);
+}

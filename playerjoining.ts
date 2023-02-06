@@ -1,12 +1,15 @@
 import { room, specPlayerIdList, debuggingMode, playerConnStrings, adminAuthList } from "./index";
+import { checkAndHandleBadWords } from "./moderation";
 import { moveOneSpecToEachTeam, restartGameWithCallback } from "./teammanagement";
 
 export function handlePlayerJoining(player: PlayerObject): void {
     const playerId: number = player.id;
+    const playerName: string = player.name;
     const playerList: PlayerObject[] = room.getPlayerList();
+    if (checkAndHandleBadWords(playerId, playerName)) return;
     if (isPlayerAlreadyConnected(playerId, player.conn)) return;
     if (adminAuthList.has(player.auth)) room.setPlayerAdmin(playerId, true);
-    room.sendAnnouncement(`👋 Bem-vindo, ${player.name}. Escreve !help para veres a lista dos comandos.`, playerId, 0x00FF00, "bold", 0);
+    room.sendAnnouncement(`👋 Bem-vindo, ${playerName}. Escreve !help para veres a lista de comandos.`, playerId, 0x00FF00, "bold", 0);
     specPlayerIdList.push(playerId);
     checkAndRestartWithNewMode(playerList.length);
 }

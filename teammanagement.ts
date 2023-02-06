@@ -1,5 +1,5 @@
 import { removePlayerFromAfkMapsAndSets, setLastPlayerActivityTimestamp } from "./afkdetection";
-import { bluePlayerIdList, redPlayerIdList, room, specPlayerIdList, stadium2x2, stadium3x3 } from "./index";
+import { bluePlayerIdList, pauseUnpauseGame, redPlayerIdList, room, specPlayerIdList, stadium2x2, stadium3x3 } from "./index";
 
 export function addPlayerToTeam(playerId: number, teamPlayerIdList: number[]) {
     const teamId: number = teamPlayerIdList === redPlayerIdList ? 1 : 2;
@@ -43,4 +43,5 @@ export function restartGameWithCallback(callback: () => void): void {
     if (playerListLength >= 6) room.setCustomStadium(stadium3x3);
     else room.setCustomStadium(stadium2x2);
     if (playerListLength !== 1) room.startGame();
+    pauseUnpauseGame();
 }

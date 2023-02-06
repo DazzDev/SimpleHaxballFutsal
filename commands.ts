@@ -12,7 +12,7 @@ export function checkAndHandleCommands(player: PlayerObject, message: string): b
             room.kickPlayer(playerId, "Comando !bb", false);
             break;
         default:
-            room.sendAnnouncement("🚫 Esse comando não existe.", playerId, 0xFF0000, "bold", 0);
+            room.sendAnnouncement("🚫 Esse comando não existe. Escreve !help para veres a lista de comandos.", playerId, 0xFF0000, "bold", 0);
             break;
     }
     return true;
