@@ -8,7 +8,7 @@ export function checkAndHandleCommands(player: PlayerObject, message: string): b
             room.sendAnnouncement("❓ Comandos: !help - mostrar esta mensagem; !bb - sair da sala.", player.id, 0xFFFFFF, "bold", 0);
             break;
         case "bb":
-            room.kickPlayer(player.id, `Até à próxima, ${player.name}. (!bb)`, false);
+            room.kickPlayer(player.id, "Comando !bb", false);
             break;
         default:
             room.sendAnnouncement("🚫 Esse comando não existe.", player.id, 0xFF0000, "bold", 0);
