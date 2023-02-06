@@ -4,13 +4,15 @@ import { handlePlayerActivity, checkAndHandleInactivePlayers } from "./afkdetect
 import { handlePlayerJoining } from "./playerjoining";
 import { handlePlayerLeaving } from "./playerleaving";
 import { moveNewTeam, restartGameWithCallback } from "./teammanagement";
-import { checkAndHandleBadWords } from "./moderation";
+import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
+import { setupAnnouncements } from "./announcements";
 
 export const debuggingMode = false;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
-export const badWordsList = new Set(fs.readFileSync("badwords.txt", "utf8").split("\n").map(line => line.trim()));
+export const badWordList = new Set(fs.readFileSync("badwords.txt", "utf8").split("\n").map(line => line.trim()));
+export const announcementList: string[] = fs.readFileSync("announcements.txt", "utf8").split("\n").map(line => line.trim());
 export const stadium2x2: string = fs.readFileSync("futsal2x2.hbs", "utf8");
 export const stadium3x3: string = fs.readFileSync("futsal3x3.hbs", "utf8");
 
@@ -31,7 +33,7 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPgQGdqwNRSEyg40Q.d3sgmT3VMkE", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPgcFlYK8-yGlSgIw.79GCo3JZoaw", //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(3);
@@ -41,6 +43,7 @@ HaxballJS.then((HBInit) => {
 
   room.onRoomLink = function (url: string) {
     console.log(url);
+    setupAnnouncements();
   };
 
   room.onPlayerJoin = function (player: PlayerObject): void {
@@ -74,7 +77,6 @@ HaxballJS.then((HBInit) => {
   }
 
   room.onPlayerChat = function (player: PlayerObject, message: string): boolean {
-    console.log(`${player.name}: ${message}`);
-    return checkAndHandleBadWords(player.id, message);
+    return checkAndHandleSpam(player.id, message) && checkAndHandleBadWords(player.id, message);
   }
 });
