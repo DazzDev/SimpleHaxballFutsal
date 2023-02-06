@@ -6,7 +6,7 @@ import { handlePlayerLeaving } from "./playerleaving";
 import { moveNewTeam, restartGameWithCallback } from "./teammanagement";
 import { checkAndHandleBadWords } from "./moderation";
 
-export const debuggingMode = false;
+export const debuggingMode = true;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
