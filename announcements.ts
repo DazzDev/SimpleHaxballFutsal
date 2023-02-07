@@ -5,7 +5,9 @@ let announcementPosition = 1;
 
 export function setupAnnouncements() {
     setInterval(() => {
-        room.sendAnnouncement(`📢 ${announcementList[announcementPosition - 1]}`, undefined, 0xFFFFFF, "bold", 0);
+        const announcement: string = `📢 ${announcementList[announcementPosition - 1]}`;
+        room.sendAnnouncement(announcement, undefined, 0xFFFFFF, "bold", 0);
+        console.log(announcement);
         announcementPosition++;
         if (announcementPosition > announcementList.length) announcementPosition = 1;
     }, announcementsInterval);

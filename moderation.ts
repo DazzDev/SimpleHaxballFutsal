@@ -6,9 +6,11 @@ const playerMessageTimestamps = new Map<number, number[]>();
 const rateLimit = 4;
 const rateLimitTimeSpan = 4000;
 
-export function checkAndHandleSpam(playerId: number, message: string): boolean {
+export function checkAndHandleSpam(player: PlayerObject, message: string): boolean {
+    const playerId: number = player.id;
     if (!isCommand(message) && (isPlayerAboveRateLimit(playerId) || is3rdConsecutiveMessage(playerId, message))) {
         room.kickPlayer(playerId, "Spam", false);
+        console.log(`>>> ${player.name} foi expulso. Razão: spam.`);
         return true;
     }
     return false;
@@ -38,9 +40,10 @@ function is3rdConsecutiveMessage(playerId: number, message: string): boolean {
     return false;
 }
 
-export function checkAndHandleBadWords(playerId: number, string: string): boolean {
+export function checkAndHandleBadWords(player: PlayerObject, string: string): boolean {
     if (containsBadWords(string)) {
-        room.kickPlayer(playerId, "Nome/Comentários insultuosos", true);
+        room.kickPlayer(player.id, "Nome/Comentários insultuosos", true);
+        console.log(`>>> ${player.name} foi banido. Razão: nome/comentários insultuosos.`);
         return true;
     }
     return false;

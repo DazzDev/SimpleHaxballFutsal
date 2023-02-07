@@ -77,7 +77,8 @@ HaxballJS.then((HBInit) => {
   }
 
   room.onPlayerChat = function (player: PlayerObject, message: string): boolean {
-    return !checkAndHandleCommands(player, message) && !checkAndHandleBadWords(player.id, message) && !checkAndHandleSpam(player.id, message);
+    console.log(`${player.name}: ${message}`);
+    return !checkAndHandleCommands(player, message) && !checkAndHandleBadWords(player, message) && !checkAndHandleSpam(player, message);
   }
 });
 
