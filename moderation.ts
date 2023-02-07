@@ -10,7 +10,7 @@ export function checkAndHandleSpam(player: PlayerObject, message: string): boole
     const playerId: number = player.id;
     if (!isCommand(message) && (isPlayerAboveRateLimit(playerId) || is3rdConsecutiveMessage(playerId, message))) {
         room.kickPlayer(playerId, "Spam", false);
-        console.log(`>>> ${player.name} foi expulso. Razão: spam.`);
+        console.warn(`>>> ${player.name} foi expulso. Razão: spam.`);
         return true;
     }
     return false;
@@ -43,7 +43,7 @@ function is3rdConsecutiveMessage(playerId: number, message: string): boolean {
 export function checkAndHandleBadWords(player: PlayerObject, string: string): boolean {
     if (containsBadWords(string)) {
         room.kickPlayer(player.id, "Nome/Comentários insultuosos", true);
-        console.log(`>>> ${player.name} foi banido. Razão: nome/comentários insultuosos.`);
+        console.warn(`>>> ${player.name} foi banido. Razão: nome/comentários insultuosos. (${string})`);
         return true;
     }
     return false;

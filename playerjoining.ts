@@ -22,7 +22,7 @@ function isPlayerAlreadyConnected(player: PlayerObject, conn: string): boolean {
     const playerId = player.id;
     if (!debuggingMode && [...playerConnStrings.values()].some(value => value === conn)) {
         room.kickPlayer(playerId, "Já estás conectado à sala", false);
-        console.log(`>>> ${player.name} foi expulso. Razão: conectar-se duas vezes com o mesmo IP.`);
+        console.warn(`>>> ${player.name} foi expulso. Razão: conectar-se duas vezes com o mesmo IP.`);
         return true;
     }
     playerConnStrings.set(playerId, conn);
