@@ -51,7 +51,7 @@ HaxballJS.then((HBInit) => {
   }
 
   room.onPlayerLeave = function (player: PlayerObject): void {
-    handlePlayerLeaving(player.id);
+    handlePlayerLeaving(player);
   }
 
   room.onTeamGoal = function (teamId: number) {

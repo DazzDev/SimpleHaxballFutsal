@@ -2,7 +2,8 @@ import { removePlayerFromAfkMapsAndSets } from "./afkdetection";
 import { specPlayerIdList, playerConnStrings, redPlayerIdList, bluePlayerIdList, room, pauseUnpauseGame } from "./index";
 import { addPlayerToTeam, moveLastOppositeTeamMemberToSpec, restartGameWithCallback } from "./teammanagement";
 
-export function handlePlayerLeaving(playerId: number): void {
+export function handlePlayerLeaving(player: PlayerObject): void {
+    const playerId: number = player.id;
     let playerIdList: number[] = [];
     if (redPlayerIdList.includes(playerId) || bluePlayerIdList.includes(playerId)) {
         playerIdList = redPlayerIdList.includes(playerId) ? redPlayerIdList : bluePlayerIdList;
@@ -13,6 +14,7 @@ export function handlePlayerLeaving(playerId: number): void {
     playerIdList.splice(playerIdList.indexOf(playerId), 1);
     removePlayerFromAfkMapsAndSets(playerId);
     playerConnStrings.delete(playerId);
+    console.log(`>>> ${player.name} saiu da sala.`);
 }
 
 function handleTeamPlayerLeaving(teamPlayerIdList: number[]) {
