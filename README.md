@@ -6,4 +6,4 @@
 
 - Moves players automatically depending on number of users in the room
 - Automatic moderation tools:
-  - Bans players when their message contains bad words (listed in the `[badwords.txt](https://github.com/DazzDev/SimpleHaxballFutsal/blob/master/badwords.txt)` file)
+  - Bans players when their message contains bad words (listed in the [`badwords.txt`](https://github.com/DazzDev/SimpleHaxballFutsal/blob/master/badwords.txt) file)
