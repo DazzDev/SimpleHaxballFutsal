@@ -8,8 +8,8 @@ import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
 import { checkAndHandleCommands } from "./commands";
 
-export const debuggingMode = true;
-const scoreLimit: number = 1;
+export const debuggingMode = false;
+const scoreLimit: number = 3;
 const timeLimit: number = 3;
 
 export const playerConnStrings = new Map<number, string>();

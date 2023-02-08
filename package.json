@@ -1,7 +1,7 @@
 {
   "name": "simplehaxballfutsal",
   "version": "1.0.0",
-  "description": "A simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (debugged using haxball.js).",
+  "description": "A simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (for deploying with haxball.js).",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts"
