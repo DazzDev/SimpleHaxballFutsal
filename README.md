@@ -1,6 +1,6 @@
 <h1 align="center">SimpleHaxballFutsal</h1>
 
-<h4 align="center">A simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (for deploying with [haxball.js](https://github.com/mertushka/haxball.js)).</h4>
+<h4 align="center">Simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (for deploying with <a href="https://github.com/mertushka/haxball.js">haxball.js</a>).</h4>
 
 ---
 
