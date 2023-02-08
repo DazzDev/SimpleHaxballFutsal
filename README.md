@@ -10,7 +10,7 @@
 - Moves players automatically depending on the number of users in the room
   - Winning players are always moved to the red team
 - Includes a practice stadium mode for when a player is waiting for an opponent
-- Automatic moderation tools:
+- Includes automatic moderation tools:
   - Kicks players when they become AFK
   - Bans players when their message/name contains "bad" words (listed in the [`badwords.txt`](https://github.com/DazzDev/SimpleHaxballFutsal/blob/master/badwords.txt) file)
   - Kicks players when they spam
