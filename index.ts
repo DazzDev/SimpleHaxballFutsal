@@ -8,8 +8,8 @@ import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
 import { checkAndHandleCommands } from "./commands";
 
-export const debuggingMode = false;
-const scoreLimit: number = 3;
+export const debuggingMode = true;
+const scoreLimit: number = 1;
 const timeLimit: number = 3;
 
 export const playerConnStrings = new Map<number, string>();
@@ -37,7 +37,7 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPjIF7M9gG-lRtiQQ.nmO35MVd--g", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPjpNFNYhVxeCzLzA.TNttVRlQLjU", //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(scoreLimit);

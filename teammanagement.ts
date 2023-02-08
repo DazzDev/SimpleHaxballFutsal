@@ -40,16 +40,10 @@ export function handleTeamWin(teamPlayerIdList: number[]) {
         }
         return;
     }
-    if (specPlayerIdList.length === 0) {
-        for (let i = 0; i < bluePlayerIdList.length; i++) {
-            movePlayerToTeam(redPlayerIdList[0], bluePlayerIdList);
-            movePlayerToTeam(bluePlayerIdList[0], redPlayerIdList);
-        }
-        return;
-    }
     for (let i = 0; i < bluePlayerIdList.length; i++) {
-        movePlayerToSpec(redPlayerIdList[0]);
+        if (specPlayerIdList.length) movePlayerToSpec(redPlayerIdList[0]);
+        else movePlayerToTeam(redPlayerIdList[0], bluePlayerIdList);
         movePlayerToTeam(bluePlayerIdList[0], redPlayerIdList);
-        movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList);
+        if (specPlayerIdList.length) movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList);
     }
 }

@@ -1,15 +1,18 @@
 {
-  "name": "simplehbfutsal",
+  "name": "simplehaxballfutsal",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (debugged using haxball.js).",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node index.ts"
   },
-  "keywords": [],
-  "author": "sacripanta",
-  "license": "ISC",
+  "keywords": [
+    "haxball",
+    "futsal",
+    "haxball.js"
+  ],
+  "author": "DazzDev",
+  "license": "MIT",
   "devDependencies": {
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
