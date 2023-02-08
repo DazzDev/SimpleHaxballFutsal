@@ -1,6 +1,6 @@
-# SimpleHaxballFutsal
+<h1 align="center">SimpleHaxballFutsal</h1>
 
-#### A simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (for deploying with [haxball.js](https://github.com/mertushka/haxball.js)).
+<h4 align="center">A simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (for deploying with [haxball.js](https://github.com/mertushka/haxball.js)).</h4>
 
 ---
 
@@ -8,7 +8,7 @@
 
 - Starts and stops the match automatically, pausing and unpausing the game to give players time to prepare
 - Moves players automatically depending on the number of users in the room
-  - Winning team is always moved to the red team
+  - Winning players are always moved to the red team
 - Includes a practice stadium mode for when a player is waiting for an opponent
 - Automatic moderation tools:
   - Kicks players when they become AFK
