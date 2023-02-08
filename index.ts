@@ -3,17 +3,20 @@ import * as fs from "fs";
 import { handlePlayerActivity, checkAndHandleInactivePlayers } from "./afkdetection";
 import { handlePlayerJoining } from "./playerjoining";
 import { handlePlayerLeaving } from "./playerleaving";
-import { moveNewTeam, restartGameWithCallback } from "./teammanagement";
+import { handleTeamWin } from "./teammanagement";
 import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
 import { setupAnnouncements } from "./announcements";
 import { checkAndHandleCommands } from "./commands";
 
-export const debuggingMode = false;
+export const debuggingMode = true;
+const scoreLimit: number = 1;
+const timeLimit: number = 3;
 
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
 export const badWordList = new Set(fs.readFileSync("badwords.txt", "utf8").split("\n").map(line => line.trim()));
 export const announcementList: string[] = fs.readFileSync("announcements.txt", "utf8").split("\n").map(line => line.trim());
+export const practiceStadium: string = fs.readFileSync("practice.hbs", "utf8");
 export const stadium2x2: string = fs.readFileSync("futsal2x2.hbs", "utf8");
 export const stadium3x3: string = fs.readFileSync("futsal3x3.hbs", "utf8");
 
@@ -34,12 +37,13 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPifd_W3cXmwP56gQ.AI1isaz5xZA", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPjIF7M9gG-lRtiQQ.nmO35MVd--g", //https://haxball.com/headlesstoken
   });
 
-  room.setScoreLimit(3);
-  room.setTimeLimit(3);
+  room.setScoreLimit(scoreLimit);
+  room.setTimeLimit(timeLimit);
   room.setTeamsLock(true);
+  room.setCustomStadium(practiceStadium);
 
   room.onRoomLink = function (url: string) {
     console.log(url);
@@ -57,15 +61,15 @@ HaxballJS.then((HBInit) => {
   room.onTeamGoal = function (teamId: number) {
     const scores = room.getScores();
     const teamScore = teamId === 1 ? scores.red : scores.blue;
-    const teamPlayerIdList = teamId === 1 ? bluePlayerIdList : redPlayerIdList;
-    if (teamScore === 3 || scores.time > scores.timeLimit * 60) restartGameWithCallback(specPlayerIdList.length === 0 ? () => undefined : () => moveNewTeam(teamPlayerIdList));
+    const teamPlayerIdList = teamId === 1 ? redPlayerIdList : bluePlayerIdList;
+    if (teamScore === scoreLimit || scores.time > timeLimit * 60) restartGameWithCallback(() => handleTeamWin(teamPlayerIdList));
   }
 
   //triggers *only* when a team is winning and the timer runs out, 
   //because the room is also listening for the onTeamGoal event, which triggers first
   room.onTeamVictory = function (scores: ScoresObject): void {
-    const teamPlayerIdList = scores.red > scores.blue ? bluePlayerIdList : redPlayerIdList;
-    restartGameWithCallback(specPlayerIdList.length === 0 ? () => undefined : () => moveNewTeam(teamPlayerIdList));
+    const teamPlayerIdList = scores.red > scores.blue ? redPlayerIdList : bluePlayerIdList;
+    restartGameWithCallback(() => handleTeamWin(teamPlayerIdList));
   }
 
   room.onPlayerActivity = function (player: PlayerObject): void {
@@ -81,6 +85,27 @@ HaxballJS.then((HBInit) => {
     return !checkAndHandleCommands(player, message) && !checkAndHandleBadWords(player, message) && !checkAndHandleSpam(player, message);
   }
 });
+
+export function restartGameWithCallback(callback: () => void): void {
+  room.stopGame();
+  callback();
+  setAppropriateStadium();
+  room.startGame();
+  const playerList: PlayerObject[] = room.getPlayerList();
+  if (playerList.length !== 1) pauseUnpauseGame();
+}
+
+function setAppropriateStadium() {
+  const playerList = room.getPlayerList();
+  const playerListLength = playerList.length;
+  if (playerListLength === 1) {
+    room.setCustomStadium(practiceStadium);
+  } else if (playerListLength >= 6) {
+    room.setCustomStadium(stadium3x3);
+  } else {
+    room.setCustomStadium(stadium2x2);
+  }
+}
 
 export function pauseUnpauseGame() {
   room.pauseGame(true);

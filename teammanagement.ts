@@ -1,11 +1,14 @@
 import { removePlayerFromAfkMapsAndSets, setLastPlayerActivityTimestamp } from "./afkdetection";
-import { bluePlayerIdList, pauseUnpauseGame, redPlayerIdList, room, specPlayerIdList, stadium2x2, stadium3x3 } from "./index";
+import { bluePlayerIdList, redPlayerIdList, room, specPlayerIdList } from "./index";
 
-export function addPlayerToTeam(playerId: number, teamPlayerIdList: number[]) {
+export function movePlayerToTeam(playerId: number, teamPlayerIdList: number[]) {
+    if (teamPlayerIdList.includes(playerId)) return;
+    const oppositeTeamPlayerIdList: number[] = teamPlayerIdList === redPlayerIdList ? bluePlayerIdList : redPlayerIdList;
     const teamId: number = teamPlayerIdList === redPlayerIdList ? 1 : 2;
     room.setPlayerTeam(playerId, teamId);
     teamPlayerIdList.push(playerId);
-    specPlayerIdList.shift();
+    if (oppositeTeamPlayerIdList.includes(playerId)) oppositeTeamPlayerIdList.splice(oppositeTeamPlayerIdList.indexOf(playerId), 1);
+    if (specPlayerIdList.includes(playerId)) specPlayerIdList.splice(specPlayerIdList.indexOf(playerId), 1);
     setLastPlayerActivityTimestamp(playerId);
 }
 
@@ -20,7 +23,7 @@ function movePlayerToSpec(playerId: number) {
 export function moveOneSpecToEachTeam(): void {
     const teamPlayerIdLists = [redPlayerIdList, bluePlayerIdList];
     teamPlayerIdLists.forEach(teamPlayerIdList => {
-        addPlayerToTeam(specPlayerIdList[0], teamPlayerIdList);
+        movePlayerToTeam(specPlayerIdList[0], teamPlayerIdList);
     });
 }
 
@@ -28,20 +31,25 @@ export function moveLastOppositeTeamMemberToSpec(oppositeTeamPlayerIdList: numbe
     movePlayerToSpec(oppositeTeamPlayerIdList[oppositeTeamPlayerIdList.length - 1]);
 }
 
-export function moveNewTeam(teamPlayerIdList: number[]): void {
-    for (let i = 0; i < teamPlayerIdList.length; i++) {
-        movePlayerToSpec(teamPlayerIdList[0]);
-        addPlayerToTeam(specPlayerIdList[0], teamPlayerIdList);
+export function handleTeamWin(teamPlayerIdList: number[]) {
+    if (teamPlayerIdList === redPlayerIdList) {
+        if (specPlayerIdList.length === 0) return;
+        for (let i = 0; i < bluePlayerIdList.length; i++) {
+            movePlayerToSpec(bluePlayerIdList[0]);
+            movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList);
+        }
+        return;
     }
-}
-
-export function restartGameWithCallback(callback: () => void): void {
-    room.stopGame();
-    callback();
-    const playerList = room.getPlayerList();
-    const playerListLength = playerList.length;
-    if (playerListLength >= 6) room.setCustomStadium(stadium3x3);
-    else room.setCustomStadium(stadium2x2);
-    if (playerListLength !== 1) room.startGame();
-    pauseUnpauseGame();
+    if (specPlayerIdList.length === 0) {
+        for (let i = 0; i < bluePlayerIdList.length; i++) {
+            movePlayerToTeam(redPlayerIdList[0], bluePlayerIdList);
+            movePlayerToTeam(bluePlayerIdList[0], redPlayerIdList);
+        }
+        return;
+    }
+    for (let i = 0; i < bluePlayerIdList.length; i++) {
+        movePlayerToSpec(redPlayerIdList[0]);
+        movePlayerToTeam(bluePlayerIdList[0], redPlayerIdList);
+        movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList);
+    }
 }

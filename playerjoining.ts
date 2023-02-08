@@ -1,6 +1,6 @@
-import { room, specPlayerIdList, debuggingMode, playerConnStrings, adminAuthList } from "./index";
+import { room, specPlayerIdList, debuggingMode, playerConnStrings, adminAuthList, redPlayerIdList, restartGameWithCallback, bluePlayerIdList } from "./index";
 import { checkAndHandleBadWords } from "./moderation";
-import { moveOneSpecToEachTeam, restartGameWithCallback } from "./teammanagement";
+import { movePlayerToTeam, moveOneSpecToEachTeam } from "./teammanagement";
 
 export function handlePlayerJoining(player: PlayerObject): void {
     const playerId: number = player.id;
@@ -12,10 +12,13 @@ export function handlePlayerJoining(player: PlayerObject): void {
     room.sendAnnouncement(`👋 Bem-vindo, ${playerName}. Escreve !help para veres a lista de comandos.`, playerId, 0x00FF00, "bold", 0);
     specPlayerIdList.push(playerId);
     console.log(`>>> ${playerName} entrou na sala.`);
-    checkAndRestartWithNewMode(playerList.length);
+    checkAndRestartWithNewMode(playerList);
 }
 
-function checkAndRestartWithNewMode(playerListLength: number): void {
+function checkAndRestartWithNewMode(playerList: PlayerObject[]): void {
+    const playerListLength: number = playerList.length;
+    if (playerListLength === 1) restartGameWithCallback(() => movePlayerToTeam(playerList[0].id, redPlayerIdList));
+    if (playerListLength === 2) restartGameWithCallback(() => movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList));
     if (playerListLength <= 6 && specPlayerIdList.length === 2) restartGameWithCallback(() => moveOneSpecToEachTeam());
 }
 
