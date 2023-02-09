@@ -3,7 +3,7 @@ import { badWordList, room } from "./index";
 
 const playerConsecutiveMessages = new Map<number, string[]>();
 const playerMessageTimestamps = new Map<number, number[]>();
-const rateLimit = 4;
+const rateLimit = 5;
 const rateLimitTimeSpan = 4000;
 
 export function checkAndHandleSpam(player: PlayerObject, message: string): boolean {

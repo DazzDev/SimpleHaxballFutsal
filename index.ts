@@ -5,7 +5,6 @@ import { handlePlayerJoining } from "./playerjoining";
 import { handlePlayerLeaving } from "./playerleaving";
 import { handleTeamWin } from "./teammanagement";
 import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
-import { setupAnnouncements } from "./announcements";
 import { checkAndHandleCommands } from "./commands";
 
 export const debuggingMode = false;
@@ -47,7 +46,6 @@ HaxballJS.then((HBInit) => {
 
   room.onRoomLink = function (url: string) {
     console.log(url);
-    setupAnnouncements();
   };
 
   room.onPlayerJoin = function (player: PlayerObject): void {
