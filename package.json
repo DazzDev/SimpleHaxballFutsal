@@ -4,7 +4,8 @@
   "description": "Simple 1x1/2x2/3x3 futsal script for Haxball Headless Host (and for deploying with haxball.js).",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node index.ts"
+    "build": "npx tsc",
+    "start:dev": "npx ts-node index.ts"
   },
   "keywords": [
     "haxball",
