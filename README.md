@@ -1,6 +1,6 @@
 <h1 align="center">SimpleHaxballFutsal</h1>
 
-<h4 align="center">Simple 1x1/2x2/3x3 futsal script for <a href="https://github.com/haxball/haxball-issues/wiki/Headless-Host">Haxball Headless Host</a> (for deploying with <a href="https://github.com/mertushka/haxball.js">haxball.js</a>).</h4>
+<h4 align="center">Simple 1x1/2x2/3x3 futsal script for <a href="https://github.com/haxball/haxball-issues/wiki/Headless-Host">Haxball Headless Host</a> (and for deploying with <a href="https://github.com/mertushka/haxball.js">haxball.js</a>).</h4>
 
 ---
 
@@ -21,4 +21,4 @@
 
 ### Demo
 
-This room is currently (hopefully still) deployed. You can check it out by searching for [its name](https://github.com/DazzDev/SimpleHaxballFutsal/blob/6577bc8a90f36b9c1f54f57c7bd6e07ce94e44b1/index.ts#L31) in the 🇵🇹 (portuguese) section of the Haxball room list.
+A room running this script is currently (hopefully still) deployed. You can check it out by searching for [its name](https://github.com/DazzDev/SimpleHaxballFutsal/blob/6577bc8a90f36b9c1f54f57c7bd6e07ce94e44b1/index.ts#L31) in the 🇵🇹 (portuguese) section of the Haxball room list.
