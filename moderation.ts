@@ -50,5 +50,5 @@ export function checkAndHandleBadWords(player: PlayerObject, string: string): bo
 }
 
 function containsBadWords(message: string): boolean {
-    return Array.from(badWordList).some((word: string) => message.toLowerCase().includes(word));
+    return Array.from(badWordList).some(word => message.toLowerCase().includes(word));
 }
