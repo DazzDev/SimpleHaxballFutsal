@@ -12,8 +12,8 @@ const scoreLimit: number = 3;
 const timeLimit: number = 3;
 
 export const playerConnStrings = new Map<number, string>();
-export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map(line => line.trim()));
-export const badWordList = new Set(fs.readFileSync("badwords.txt", "utf8").split("\n").map(line => line.trim()));
+export const adminAuthList = new Set(fs.readFileSync("adminlist.txt", "utf8").split("\n").map((line: string) => line.trim()));
+export const badWordList = new Set(fs.readFileSync("badwords.txt", "utf8").split("\n").map((line: string) => line.trim()));
 export const practiceStadium: string = fs.readFileSync("practice.hbs", "utf8");
 export const stadium2x2: string = fs.readFileSync("futsal2x2.hbs", "utf8");
 export const stadium3x3: string = fs.readFileSync("futsal3x3.hbs", "utf8");
