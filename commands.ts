@@ -1,4 +1,4 @@
-import { room } from "./index";
+import { room } from "./index.js";
 
 export function checkAndHandleCommands(player: PlayerObject, message: string): boolean {
     if (!isCommand(message)) return false;

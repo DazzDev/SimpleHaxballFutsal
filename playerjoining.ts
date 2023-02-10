@@ -1,6 +1,6 @@
-import { room, specPlayerIdList, debuggingMode, playerConnStrings, adminAuthList, redPlayerIdList, restartGameWithCallback, bluePlayerIdList } from "./index";
-import { checkAndHandleBadWords } from "./moderation";
-import { movePlayerToTeam, moveOneSpecToEachTeam } from "./teammanagement";
+import { room, specPlayerIdList, debuggingMode, playerConnStrings, adminAuthList, redPlayerIdList, restartGameWithCallback, bluePlayerIdList } from "./index.js";
+import { checkAndHandleBadWords } from "./moderation.js";
+import { movePlayerToTeam, moveOneSpecToEachTeam } from "./teammanagement.js";
 
 export function handlePlayerJoining(player: PlayerObject): void {
     const playerId: number = player.id;

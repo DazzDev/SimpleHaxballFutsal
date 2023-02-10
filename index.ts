@@ -1,11 +1,11 @@
 import HaxballJS from "haxball.js";
 import * as fs from "fs";
-import { handlePlayerActivity, checkAndHandleInactivePlayers } from "./afkdetection";
-import { handlePlayerJoining } from "./playerjoining";
-import { handlePlayerLeaving } from "./playerleaving";
-import { handleTeamWin } from "./teammanagement";
-import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation";
-import { checkAndHandleCommands } from "./commands";
+import { handlePlayerActivity, checkAndHandleInactivePlayers } from "./afkdetection.js";
+import { handlePlayerJoining } from "./playerjoining.js";
+import { handlePlayerLeaving } from "./playerleaving.js";
+import { handleTeamWin } from "./teammanagement.js";
+import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation.js";
+import { checkAndHandleCommands } from "./commands.js";
 
 export const debuggingMode = false;
 const scoreLimit: number = 3;

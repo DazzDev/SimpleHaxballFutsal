@@ -1,6 +1,6 @@
-import { removePlayerFromAfkMapsAndSets } from "./afkdetection";
-import { specPlayerIdList, playerConnStrings, redPlayerIdList, bluePlayerIdList, room, pauseUnpauseGame, restartGameWithCallback } from "./index";
-import { movePlayerToTeam, moveLastOppositeTeamMemberToSpec } from "./teammanagement";
+import { removePlayerFromAfkMapsAndSets } from "./afkdetection.js";
+import { specPlayerIdList, playerConnStrings, redPlayerIdList, bluePlayerIdList, room, pauseUnpauseGame, restartGameWithCallback } from "./index.js";
+import { movePlayerToTeam, moveLastOppositeTeamMemberToSpec } from "./teammanagement.js";
 
 export function handlePlayerLeaving(player: PlayerObject): void {
     const playerId: number = player.id;

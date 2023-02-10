@@ -1,5 +1,5 @@
-import { removePlayerFromAfkMapsAndSets, setLastPlayerActivityTimestamp } from "./afkdetection";
-import { bluePlayerIdList, redPlayerIdList, room, specPlayerIdList } from "./index";
+import { removePlayerFromAfkMapsAndSets, setLastPlayerActivityTimestamp } from "./afkdetection.js";
+import { bluePlayerIdList, redPlayerIdList, room, specPlayerIdList } from "./index.js";
 
 export function movePlayerToTeam(playerId: number, teamPlayerIdList: number[]) {
     if (teamPlayerIdList.includes(playerId)) return;

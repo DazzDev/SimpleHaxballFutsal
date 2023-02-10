@@ -1,4 +1,4 @@
-import { room, specPlayerIdList } from "./index";
+import { room, specPlayerIdList } from "./index.js";
 
 const lastPlayerActivityTimestamp = new Map<number, number>();
 const hasPlayerBeenWarnedToMove = new Set<number>();

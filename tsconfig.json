@@ -1,10 +1,8 @@
 {
     "compilerOptions": {
-        "target": "ES2016",
-        "moduleResolution": "node",
         "outDir": "dist",
-        "strict": true,
-        "removeComments": true,
-        "forceConsistentCasingInFileNames": true,
-    }
+        "exactOptionalPropertyTypes": false,
+        "strictNullChecks": false
+    },
+    "extends": "@tsconfig/node-lts-strictest-esm/tsconfig.json"
 }

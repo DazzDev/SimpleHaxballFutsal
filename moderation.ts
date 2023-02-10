@@ -1,5 +1,5 @@
-import { isCommand } from "./commands";
-import { badWordList, room } from "./index";
+import { isCommand } from "./commands.js";
+import { badWordList, room } from "./index.js";
 
 const playerConsecutiveMessages = new Map<number, string[]>();
 const playerMessageTimestamps = new Map<number, number[]>();
@@ -18,7 +18,7 @@ export function checkAndHandleSpam(player: PlayerObject, message: string): boole
 
 function isPlayerAboveRateLimit(playerId: number): boolean {
     const currentTimestamp = Date.now();
-    let messageTimestamps = playerMessageTimestamps.get(playerId) || [];
+    let messageTimestamps: number[] = playerMessageTimestamps.get(playerId) || [];
     while (messageTimestamps.length > 0 && currentTimestamp - messageTimestamps[0] > rateLimitTimeSpan) messageTimestamps.shift();
     if (messageTimestamps.length >= rateLimit) return true;
     messageTimestamps.push(currentTimestamp);
