@@ -9,7 +9,7 @@ export function handlePlayerJoining(player: PlayerObject): void {
     if (checkAndHandleBadWords(player, playerName)) return;
     if (isPlayerAlreadyConnected(player, player.conn)) return;
     if (adminAuthList.has(player.auth)) room.setPlayerAdmin(playerId, true);
-    room.sendAnnouncement(`👋 Bem-vindo, ${playerName}. Escreve !help para veres a lista de comandos.`, playerId, 0x00FF00, "bold", 0);
+    room.sendAnnouncement(`👋 Bem-vindo, ${playerName}.`, playerId, 0x00FF00, "bold", 0);
     specPlayerIdList.push(playerId);
     console.log(`>>> ${playerName} entrou na sala.`);
     checkAndRestartWithNewMode(playerList);

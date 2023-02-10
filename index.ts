@@ -14,9 +14,10 @@ const timeLimit: number = 3;
 export const playerConnStrings = new Map<number, string>();
 export const adminAuthList: Set<string> = new Set(fs.readFileSync("lists/adminlist.txt", "utf8").split("\n").map((line: string) => line.trim()));
 export const badWordList: Set<string> = new Set(fs.readFileSync("lists/badwords.txt", "utf8").split("\n").map((line: string) => line.trim()));
-export const practiceStadium: string = fs.readFileSync("stadiums/practice.hbs", "utf8");
-export const stadium2x2: string = fs.readFileSync("stadiums/futsal2x2.hbs", "utf8");
-export const stadium3x3: string = fs.readFileSync("stadiums/futsal3x3.hbs", "utf8");
+const tokenFile: string = fs.readFileSync("token.txt", "utf8");
+const practiceStadium: string = fs.readFileSync("stadiums/practice.hbs", "utf8");
+const stadium2x2: string = fs.readFileSync("stadiums/futsal2x2.hbs", "utf8");
+const stadium3x3: string = fs.readFileSync("stadiums/futsal3x3.hbs", "utf8");
 
 export let specPlayerIdList: number[] = [];
 export let redPlayerIdList: number[] = [];
@@ -26,7 +27,7 @@ export let room: RoomObject;
 
 HaxballJS.then((HBInit) => {
   room = HBInit({
-    roomName: "⚖️ FUTSAL 24/7 JUSTO (10 DE PING) ⚖️",
+    roomName: "⚖️ FUTSAL 24/7 JUSTO (~15 DE PING) ⚖️",
     maxPlayers: 12,
     public: !debuggingMode,
     noPlayer: true,
@@ -35,7 +36,7 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPlnBh6ZXIRrl9HZg.upsN-_IEufM", //https://haxball.com/headlesstoken
+    token: tokenFile, //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(scoreLimit);
