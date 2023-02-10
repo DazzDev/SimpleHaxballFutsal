@@ -21,4 +21,4 @@
 
 ### Demo
 
-A room running this script is currently (hopefully still) deployed. You can check it out by searching for [its name](https://github.com/DazzDev/SimpleHaxballFutsal/blob/6577bc8a90f36b9c1f54f57c7bd6e07ce94e44b1/index.ts#L31) in the 🇵🇹 (portuguese) section of the Haxball room list.
+A room running this script is currently (hopefully still) deployed. You can check it out by searching for [its name](https://github.com/DazzDev/SimpleHaxballFutsal/blob/master/index.ts#L30) in the 🇵🇹 (portuguese) section of the Haxball room list.
