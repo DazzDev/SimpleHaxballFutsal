@@ -12,11 +12,11 @@ const scoreLimit: number = 3;
 const timeLimit: number = 3;
 
 export const playerConnStrings = new Map<number, string>();
-export const adminAuthList: Set<string> = new Set(fs.readFileSync("/lists/adminlist.txt", "utf8").split("\n").map((line: string) => line.trim()));
-export const badWordList: Set<string> = new Set(fs.readFileSync("/lists/badwords.txt", "utf8").split("\n").map((line: string) => line.trim()));
-export const practiceStadium: string = fs.readFileSync("/stadiums/practice.hbs", "utf8");
-export const stadium2x2: string = fs.readFileSync("/stadiums/futsal2x2.hbs", "utf8");
-export const stadium3x3: string = fs.readFileSync("/stadiums/futsal3x3.hbs", "utf8");
+export const adminAuthList: Set<string> = new Set(fs.readFileSync("lists/adminlist.txt", "utf8").split("\n").map((line: string) => line.trim()));
+export const badWordList: Set<string> = new Set(fs.readFileSync("lists/badwords.txt", "utf8").split("\n").map((line: string) => line.trim()));
+export const practiceStadium: string = fs.readFileSync("stadiums/practice.hbs", "utf8");
+export const stadium2x2: string = fs.readFileSync("stadiums/futsal2x2.hbs", "utf8");
+export const stadium3x3: string = fs.readFileSync("stadiums/futsal3x3.hbs", "utf8");
 
 export let specPlayerIdList: number[] = [];
 export let redPlayerIdList: number[] = [];
