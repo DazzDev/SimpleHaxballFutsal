@@ -6,7 +6,10 @@ export function checkAndHandleCommands(player: PlayerObject, message: string): b
     const playerId = player.id;
     switch (command) {
         case "help":
-            room.sendAnnouncement("❓ Comandos: !help - mostrar esta mensagem; !bb - sair da sala.", playerId, 0xFFFFFF, "bold", 0);
+            room.sendAnnouncement("❓ Comandos: !help - mostrar esta mensagem; !github: mostrar o link para o repositório público da sala; !bb - sair da sala.", playerId, 0xFFFFFF, "bold", 0);
+            break;
+        case "github":
+            room.sendAnnouncement("👨‍💻 O código desta sala é open source: github.com/DazzDev/SimpleHaxballFutsal.", playerId, 0xFFFFFF, "bold", 0);
             break;
         case "bb":
             room.kickPlayer(playerId, "Comando !bb", false);
