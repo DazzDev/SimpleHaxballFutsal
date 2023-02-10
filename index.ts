@@ -35,7 +35,7 @@ HaxballJS.then((HBInit) => {
       lat: 41.15144214309606,
       lon: -8.613879659626768
     },
-    token: "thr1.AAAAAGPjwQUsHYByErdDZA.AYdO9zxfod8", //https://haxball.com/headlesstoken
+    token: "thr1.AAAAAGPlnBh6ZXIRrl9HZg.upsN-_IEufM", //https://haxball.com/headlesstoken
   });
 
   room.setScoreLimit(scoreLimit);
