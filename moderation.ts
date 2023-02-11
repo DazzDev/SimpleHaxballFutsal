@@ -19,7 +19,7 @@ export function checkAndHandleSpam(player: PlayerObject, message: string): boole
 function isPlayerAboveRateLimit(playerId: number): boolean {
     const currentTimestamp = Date.now();
     let messageTimestamps: number[] = playerMessageTimestamps.get(playerId) || [];
-    while (messageTimestamps.length > 0 && currentTimestamp - messageTimestamps[0] > rateLimitTimeSpan) messageTimestamps.shift();
+    while (messageTimestamps.length > 0 && currentTimestamp - messageTimestamps[0]! > rateLimitTimeSpan) messageTimestamps.shift();
     if (messageTimestamps.length >= rateLimit) return true;
     messageTimestamps.push(currentTimestamp);
     playerMessageTimestamps.set(playerId, messageTimestamps);
@@ -42,13 +42,26 @@ function is3rdConsecutiveMessage(playerId: number, message: string): boolean {
 
 export function checkAndHandleBadWords(player: PlayerObject, string: string): boolean {
     if (containsBadWords(string)) {
-        room.kickPlayer(player.id, "Nome/Comentários insultuosos", true);
-        console.warn(`>>> ${player.name} foi banido. Razão: nome/comentários insultuosos. (${string})`);
+        //room.kickPlayer(player.id, "Intolerância", true);
+        console.warn(`>>> ${player.name} foi banido. Razão: intolerância. (${string})`);
         return true;
     }
     return false;
 }
 
 function containsBadWords(message: string): boolean {
-    return Array.from(badWordList).some((word: string) => message.toLowerCase().includes(word));
+    return Array.from(badWordList).some((word: string) => removeNumbersAndDiacritics(message).toLowerCase().includes(word));
+}
+
+function removeNumbersAndDiacritics(message: string): string {
+    message = message.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    const replacements: { [key: string]: string } = {
+        "0": "o",
+        "1": "i",
+        "3": "e",
+        "4": "a",
+        "5": "s",
+        "7": "t",
+    };
+    return message.replace(/[013457]/g, m => replacements[m]!);
 }

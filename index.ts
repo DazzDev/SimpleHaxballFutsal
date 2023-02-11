@@ -7,7 +7,7 @@ import { handleTeamWin } from "./teammanagement.js";
 import { checkAndHandleBadWords, checkAndHandleSpam } from "./moderation.js";
 import { checkAndHandleCommands } from "./commands.js";
 
-export const debuggingMode = false;
+export const debuggingMode = true;
 const scoreLimit: number = 3;
 const timeLimit: number = 3;
 

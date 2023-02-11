@@ -23,27 +23,27 @@ function movePlayerToSpec(playerId: number) {
 export function moveOneSpecToEachTeam(): void {
     const teamPlayerIdLists = [redPlayerIdList, bluePlayerIdList];
     teamPlayerIdLists.forEach(teamPlayerIdList => {
-        movePlayerToTeam(specPlayerIdList[0], teamPlayerIdList);
+        movePlayerToTeam(specPlayerIdList[0]!, teamPlayerIdList);
     });
 }
 
 export function moveLastOppositeTeamMemberToSpec(oppositeTeamPlayerIdList: number[]): void {
-    movePlayerToSpec(oppositeTeamPlayerIdList[oppositeTeamPlayerIdList.length - 1]);
+    movePlayerToSpec(oppositeTeamPlayerIdList[oppositeTeamPlayerIdList.length - 1]!);
 }
 
 export function handleTeamWin(teamPlayerIdList: number[]) {
     if (teamPlayerIdList === redPlayerIdList) {
         if (specPlayerIdList.length === 0) return;
         for (let i = 0; i < bluePlayerIdList.length; i++) {
-            movePlayerToSpec(bluePlayerIdList[0]);
-            movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList);
+            movePlayerToSpec(bluePlayerIdList[0]!);
+            movePlayerToTeam(specPlayerIdList[0]!, bluePlayerIdList);
         }
         return;
     }
     for (let i = 0; i < bluePlayerIdList.length; i++) {
-        if (specPlayerIdList.length) movePlayerToSpec(redPlayerIdList[0]);
-        else movePlayerToTeam(redPlayerIdList[0], bluePlayerIdList);
-        movePlayerToTeam(bluePlayerIdList[0], redPlayerIdList);
-        if (specPlayerIdList.length) movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList);
+        if (specPlayerIdList.length) movePlayerToSpec(redPlayerIdList[0]!);
+        else movePlayerToTeam(redPlayerIdList[0]!, bluePlayerIdList);
+        movePlayerToTeam(bluePlayerIdList[0]!, redPlayerIdList);
+        if (specPlayerIdList.length) movePlayerToTeam(specPlayerIdList[0]!, bluePlayerIdList);
     }
 }

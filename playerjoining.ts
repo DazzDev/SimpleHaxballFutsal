@@ -17,8 +17,8 @@ export function handlePlayerJoining(player: PlayerObject): void {
 
 function checkAndRestartWithNewMode(playerList: PlayerObject[]): void {
     const playerListLength: number = playerList.length;
-    if (playerListLength === 1) restartGameWithCallback(() => movePlayerToTeam(playerList[0].id, redPlayerIdList));
-    if (playerListLength === 2) restartGameWithCallback(() => movePlayerToTeam(specPlayerIdList[0], bluePlayerIdList));
+    if (playerListLength === 1) restartGameWithCallback(() => movePlayerToTeam(playerList[0]!.id, redPlayerIdList));
+    if (playerListLength === 2) restartGameWithCallback(() => movePlayerToTeam(specPlayerIdList[0]!, bluePlayerIdList));
     if (playerListLength <= 6 && specPlayerIdList.length === 2) restartGameWithCallback(() => moveOneSpecToEachTeam());
 }
 

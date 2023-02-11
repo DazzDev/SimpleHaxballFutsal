@@ -22,11 +22,11 @@ export function handlePlayerLeaving(player: PlayerObject): void {
 function handleTeamPlayerLeaving(teamPlayerIdList: number[], playerList: PlayerObject[]) {
     const oppositeTeamPlayerIdList: number[] = teamPlayerIdList === redPlayerIdList ? bluePlayerIdList : redPlayerIdList;
     if (playerList.length === 1) {
-        restartGameWithCallback(() => movePlayerToTeam(playerList[0].id, redPlayerIdList));
+        restartGameWithCallback(() => movePlayerToTeam(playerList[0]!.id, redPlayerIdList));
     } else if (specPlayerIdList.length === 0) {
         restartGameWithCallback(() => moveLastOppositeTeamMemberToSpec(oppositeTeamPlayerIdList));
     } else {
-        movePlayerToTeam(specPlayerIdList[0], teamPlayerIdList);
+        movePlayerToTeam(specPlayerIdList[0]!, teamPlayerIdList);
         pauseUnpauseGame();
     }
 }
