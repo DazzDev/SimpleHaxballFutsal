@@ -105,7 +105,7 @@ function setAppropriateStadium() {
   }
 }
 
-export function pauseUnpauseGame() {//
+export function pauseUnpauseGame() {
   room.pauseGame(true);
   room.pauseGame(false);
 }
