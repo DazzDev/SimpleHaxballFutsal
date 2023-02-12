@@ -42,7 +42,7 @@ function is3rdConsecutiveMessage(playerId: number, message: string): boolean {
 
 export function checkAndHandleBadWords(player: PlayerObject, string: string): boolean {
     if (containsBadWords(string)) {
-        //room.kickPlayer(player.id, "Intolerância", true);
+        room.kickPlayer(player.id, "Intolerância", true);
         console.warn(`>>> ${player.name} foi banido. Razão: intolerância. (${string})`);
         return true;
     }
